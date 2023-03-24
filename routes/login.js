@@ -10,8 +10,7 @@ router.post("/", (req,res)=>{
             res.end(JSON.stringify({status : "success", data : result[0]}));
         }
         else{
-        res.end(JSON.stringify({status : "failed", data : "Invalid Credentials"}));        
-
+            res.end(JSON.stringify({status : "failed", data : "Invalid Credentials"}));        
         }
     }).catch(err=>{
         res.end(JSON.stringify({status : "failed", data : err}));        
