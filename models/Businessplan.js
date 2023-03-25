@@ -8,7 +8,7 @@ let schema = new Schema(
         planname: {type:String , required:true},
         amount: {type:String , required:true},
         duration: {type:String , required:true},
-        profileviews: {type:String , required:true},
+        profileviews: {type:String , required:true}
     }
 )
 

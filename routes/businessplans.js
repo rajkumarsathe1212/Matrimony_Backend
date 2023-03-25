@@ -26,7 +26,7 @@ router.put("/:id",(req,res)=>{
         res.end(JSON.stringify({status:"failed",data:err}))
     })
 })
-
+    
 router.get("/",(req,res)=>{
     Businessplan.find().sort({name:1}).then(result =>{
         if(result.length > 0){

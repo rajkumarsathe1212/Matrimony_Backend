@@ -3,11 +3,11 @@ let Schema = mongoose.Schema;
 
 let schema = new Schema(
     {
-        stateid : { type : Schema.Types.ObjectId, ref : "states" },
-        name : { type : String, required : true, unique : true}
+        name:{type:String, required:true},
+        stateid:{type:Schema.Types.ObjectId, ref:"states"},
+        
     }
 )
 
-let District = mongoose.model("districts", schema);
-
+let District = mongoose.model("districts",schema);
 module.exports = District;
