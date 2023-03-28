@@ -26,9 +26,22 @@ router.put("/:id",(req,res)=>{
         res.end(JSON.stringify({status:"failed",data:err}))
     })
 })
-    
+
 router.get("/",(req,res)=>{
-    Businessplan.find().sort({name:1}).then(result =>{
+    Businessplan.find().populate({path:"businessid", select:["name"]}).sort({name:1}).then(result =>{
+        if(result.length > 0){
+            res.end(JSON.stringify({status:"success",data:result}));
+        }
+        else{
+            res.end(JSON.stringify({status:"failed",dat:"Record not found"}));
+        }
+    }).catch(err=>{
+        res.end(JSON.stringify({status:"failed",data:err}));
+    })
+})
+    
+router.get("/:businessid",(req,res)=>{
+    Businessplan.find({businessid : req.params.businessid}).sort({name:1}).then(result =>{
         if(result.length > 0){
             res.end(JSON.stringify({status:"success",data:result}));
         }
@@ -40,7 +53,7 @@ router.get("/",(req,res)=>{
     })
 })
 
-router.get("/:id",(req,res)=>{
+router.get("/:businessid/:id",(req,res)=>{
     let id = req.params.id;
     
     Businessplan.findById(id).then(result=>{
