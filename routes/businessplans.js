@@ -42,12 +42,7 @@ router.get("/",(req,res)=>{
     
 router.get("/:businessid",(req,res)=>{
     Businessplan.find({businessid : req.params.businessid}).sort({name:1}).then(result =>{
-        if(result.length > 0){
-            res.end(JSON.stringify({status:"success",data:result}));
-        }
-        else{
-            res.end(JSON.stringify({status:"failed",dat:"Record not found"}));
-        }
+        res.end(JSON.stringify({status:"success",data:result}));
     }).catch(err=>{
         res.end(JSON.stringify({status:"failed",data:err}));
     })
